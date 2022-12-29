@@ -7,6 +7,7 @@ class Session
     public function __construct()
     {
         session_start();
+        $this->check_the_login();
     }
 
     private function check_the_login()
