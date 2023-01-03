@@ -1,26 +1,26 @@
-<?php require_once "./includes/init.php"?>
+<?php require_once "./includes/header.php"?>
 <?php
 if ($session->isSignIn()) {
- redirect("index.php");
+    redirect("index.php");
 }
 if (isset($_POST['submit'])) {
- $username = trim($_POST['username']);
- $password = trim($_POST['password']);
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
 //method to check datebase user
- $user_found = User::verify_user($user_found, $password);
+    $user_found = User::verify_user($username, $password);
 
- if ($user_found) {
-  $session->login($user_found);
-  redirect("index.php");
- } else {
-  $the_message = "Password or Username is incorrect";
-  echo $the_message;
- }
+    if ($user_found) {
+        $session->login($user_found);
+        redirect("index.php");
+    } else {
+        $the_message = "Password or Username is incorrect";
+        echo $the_message;
+    }
 } else {
- $username = "";
- $password = "";
- $the_message = "";
+    $username = "";
+    $password = "";
+    $the_message = "";
 }
 
 ?>

@@ -3,10 +3,12 @@ require_once "config.php";
 class Database
 {
     public $connection;
+    //this is construct method that intialize the open db asap
     public function __construct()
     {
         $this->open_db_connection();
     }
+    //this method can open db connection
     public function open_db_connection()
     {
         $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -14,6 +16,7 @@ class Database
             die("Database Connection Failed" . $this->connection->error);
         }
     }
+    //this method can query the data
     public function query($sql)
     {
         $result = $this->connection->query($sql);
