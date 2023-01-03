@@ -28,7 +28,7 @@ class Session
  public function logout()
  {
   unset($_SESSION['user_id']);
-  unset($this->user_error);
+  unset($this->user_id);
   $this->signIn = false;
  }
 
@@ -44,4 +44,4 @@ class Session
  }
 }
 
-$sesssion = new Session();
+$session = new Session();
