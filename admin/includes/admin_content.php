@@ -8,9 +8,9 @@
                 <small>Subheading</small>
             </h1>
             <?php
-$users = User::find_users_byId(1);
+$users = User::find_users_byId(2);
 # code...
-echo $users->username . '<br>';
+echo $users->lastname . '<br>';
 // $pictures = new Car();
 ?>
             <ol class="breadcrumb">

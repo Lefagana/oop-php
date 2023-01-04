@@ -3,12 +3,14 @@ class Session
 {
     private $signIn = false;
     public $user_id;
+    public $message;
 
     // Constructor function to initialize the session() and check login method asa the prgramm start running
     public function __construct()
     {
         session_start();
         $this->check_the_login();
+        $this->check_message();
     }
 //CHECK IF THE USER IS SIGN-IN
     public function isSignIn()
@@ -42,6 +44,25 @@ class Session
             $this->signIn = false;
         }
     }
+
+    public function message($msg = "")
+    {
+        if (!empty($msg)) {
+            $_SESSION['message'] = $msg;
+        } else {
+            return $this->message;
+        }
+    }
+    private function check_message()
+    {
+        if (isset($_SESSION['message'])) {
+            $this->message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        } else {
+            $this->message = "";
+        }
+    }
+
 }
 
 $session = new Session();
