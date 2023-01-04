@@ -22,7 +22,6 @@ if (isset($_POST['submit'])) {
     $password = "";
     $the_message = "";
 }
-
 ?>
 
 <div class="col-md-4 col-md-offset-3">
