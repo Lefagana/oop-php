@@ -8,10 +8,16 @@
                 <small>Subheading</small>
             </h1>
             <?php
-$users = User::find_users_byId(2);
-# code...
-echo $users->lastname . '<br>';
-// $pictures = new Car();
+// $user = new User();
+// $user->username = "Edwin1";
+// $user->lastname = " last 1 Edwin";
+// $user->firstname = "First 1 Edwin";
+// $user->password = "Edwin1234";
+// $user->email = "Edwin@gmail.com";
+// $user->create();
+
+$user = User::find_users_byId(4);
+$user->delete_user();
 ?>
             <ol class="breadcrumb">
                 <li>

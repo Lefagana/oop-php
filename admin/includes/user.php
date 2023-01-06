@@ -6,6 +6,7 @@ class User
     public $password;
     public $firstname;
     public $lastname;
+    public $email;
 //method that can find all users on the system
     public static function find_all_users()
     {
@@ -59,5 +60,43 @@ class User
     {
         $object_properties = get_object_vars($this);
         return array_key_exists($the_attribute, $object_properties);
+    }
+
+    public function create()
+    {
+        global $database;
+        $sql = "INSERT INTO users (username,firstname,lastname,password,email)";
+        $sql .= "VALUES('";
+        $sql .= $database->escape_string($this->username) . "','";
+        $sql .= $database->escape_string($this->firstname) . "','";
+        $sql .= $database->escape_string($this->lastname) . "','";
+        $sql .= $database->escape_string($this->password) . "','";
+        $sql .= $database->escape_string($this->email) . "')";
+        if ($database->query($sql)) {
+            $this->id = $database->the_insert_id();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function update_user_infor()
+    {
+        global $database;
+        $sql = "UPDATE users SET ";
+        $sql .= "username= '" . $database->escape_string($this->username) . "',";
+        $sql .= "password= '" . $database->escape_string($this->password) . "',";
+        $sql .= "firstname= '" . $database->escape_string($this->firstname) . "',";
+        $sql .= "lastname= '" . $database->escape_string($this->lastname) . "'";
+        $sql .= " WHERE id= " . $database->escape_string($this->id);
+        $database->query($sql);
+        return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+    }
+
+    public function delete_user()
+    {
+        global $database;
+        $sql = "DELETE FROM users WHERE id = '{$database->escape_string($this->id)}' LIMIT 1";
+        $database->query($sql);
+        return (mysqli_affected_rows($database->connection) == 1) ? true : false;
     }
 }
