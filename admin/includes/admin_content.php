@@ -16,7 +16,9 @@
 // $user->email = "Edwin@gmail.com";
 // $user->create();
 
-$user = User::find_users_byId(4);
+$user = User::find_users_byId(9);
+$user->username = 'Test new';
+
 $user->delete_user();
 ?>
             <ol class="breadcrumb">
