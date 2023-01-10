@@ -16,10 +16,16 @@
 // $user->email = "Edwin@gmail.com";
 // $user->create();
 
-$user = User::find_users_byId(9);
-$user->username = 'Test new';
+// $photos = Photo::find_all();
+// foreach ($photos as $photo) {
+//     echo $photo->title;
+//     echo $photo->description;
+// }
+// $photo = Photo::find_byId(2);
+// $photo->title = "Damatur111";
+// $photo->save();
 
-$user->delete_user();
+// echo SITE_ROOT;
 ?>
             <ol class="breadcrumb">
                 <li>
