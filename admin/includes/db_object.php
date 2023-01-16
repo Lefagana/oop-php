@@ -71,7 +71,7 @@ class Db_object
     // checking if the user exst then we updade the date else create() the neww user
     public function save()
     {
-        return isset($this->id) ? $this->update_user_infor() : $this->create();
+        return isset($this->id) ? $this->update() : $this->create();
     }
     public function create()
     {
@@ -86,7 +86,7 @@ class Db_object
             return false;
         }
     }
-    public function update_user_infor()
+    public function update()
     {
         global $database;
         $properties = $this->cleanProperties();
