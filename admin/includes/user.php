@@ -17,7 +17,7 @@ class User extends Db_object
         $username = $database->escape_string($username);
         $password = $database->escape_string($password);
 
-        $sql = "SELECT *FROM" . self::$db_tbl . "  WHERE ";
+        $sql = "SELECT *FROM " . self::$db_tbl . "  WHERE ";
         $sql .= "username = '{$username}'";
         $sql .= " AND password = '{$password}'";
         $sql .= " LIMIT 1";

@@ -1,39 +1,62 @@
 <?php include "includes/header.php";?>
+<?php if (!$session->isSignIn()) {redirect("login.php");}?>
+<?php
+$photos = Photo::find_all();
+// echo $photo->description;
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include "includes/topnav.php";?>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php include "includes/sidenav.php";?>
-            <!-- /.navbar-collapse -->
-        </nav>
+?>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <?php include "includes/topnav.php";?>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <?php include "includes/sidenav.php";?>
+    <!-- /.navbar-collapse -->
+</nav>
 
-        <div id="page-wrapper">
-        <div class="container-fluid">
+<div id="page-wrapper">
+    <div class="container-fluid">
 
-<!-- Page Heading -->
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">
-            PHOTOS
-            <small>Subheading</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-file"></i> Blank Page
-            </li>
-        </ol>
-    </div>
-</div>
-<!-- /.row -->
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    PHOTOS
+                    <small>Subheading</small>
+                </h1>
+                <div class="col-md-12">
+                    <table class='table table-hover'>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Photo</th>
+                                <th>File Name</th>
+                                <th>Title</th>
+                                <th>Size</th>
+                            </tr>
+                        </thead>
 
-</div>
-<!-- /.container-fluid -->
+                        <tbody>
+                            <?php
+foreach ($photos as $photo):
+?>
+                            <tr>
+                                <td><?php echo $photo->id ?></td>
+                                <td><img src="<?php echo $photo->picturePath() ?>" width="100" height="50"> </td>
+                                <td><?php echo $photo->filename ?></td>
+                                <td><?php echo $photo->title ?></td>
+                                <td><?php echo $photo->size ?></td>
+                            </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.row -->
 
-  <?php include "includes/footer.php";?>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<?php include "includes/footer.php";?>

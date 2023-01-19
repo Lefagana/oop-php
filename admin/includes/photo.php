@@ -34,10 +34,15 @@ class Photo extends Db_object
             return false;
         } else {
             $this->filename = basename($file['name']);
-            $this->tmp_path = $file['tmp_path'];
+            $this->tmp_path = $file['tmp_name'];
             $this->type = $file['type'];
             $this->size = $file['size'];
         }
+    }
+
+    public function picturePath()
+    {
+        return $this->upload_dir . DS . $this->filename;
     }
 
     public function save()
@@ -53,6 +58,8 @@ class Photo extends Db_object
             }
 
             $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_dir . DS . $this->filename;
+            echo $target_path;
+
             if (file_exists($target_path)) {
                 $this->errors[] = "This File {$this->filename} already exists";
                 return false;
