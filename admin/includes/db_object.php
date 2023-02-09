@@ -101,7 +101,7 @@ class Db_object
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
     }
 
-    public function delete_user()
+    public function delete()
     {
         global $database;
         $sql = "DELETE FROM " . static::$db_tbl . " WHERE id = '{$database->escape_string($this->id)}' LIMIT 1";

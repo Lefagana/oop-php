@@ -2,7 +2,6 @@
 <?php if (!$session->isSignIn()) {redirect("login.php");}?>
 <?php
 $photos = Photo::find_all();
-// echo $photo->description;
 
 ?>
 <!-- Navigation -->
@@ -42,7 +41,13 @@ foreach ($photos as $photo):
 ?>
                             <tr>
                                 <td><?php echo $photo->id ?></td>
-                                <td><img src="<?php echo $photo->picturePath() ?>" width="100" height="50"> </td>
+                                <td><img src="<?php echo $photo->picturePath() ?>" width="100" height="50">
+                                    <div class="pictures_link">
+                                        <a href="delete_photo.php/?id=<?php echo $photo->id ?>">Delete</a>
+                                        <a href="edit.php?id=<?php echo $photo->id ?>">Edit</a>
+                                        <a href="view.php?id=<?php echo $photo->id ?>">View</a>
+                                    </div>
+                                </td>
                                 <td><?php echo $photo->filename ?></td>
                                 <td><?php echo $photo->title ?></td>
                                 <td><?php echo $photo->size ?></td>

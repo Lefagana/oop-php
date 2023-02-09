@@ -2,7 +2,7 @@
 class Photo extends Db_object
 {
     protected static $db_tbl = "photos";
-    protected static $db_tbl_fields = array('title', 'description', 'filename', 'type', 'size');
+    protected static $db_tbl_fields = array('id', 'title', 'description', 'filename', 'type', 'size');
     public $id;
     public $title;
     public $description;
@@ -75,6 +75,16 @@ class Photo extends Db_object
                 return false;
             }
 
+        }
+    }
+
+    public function delete_photo()
+    {
+        if ($this->delete()) {
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->picturePath();
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
         }
     }
 }
