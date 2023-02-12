@@ -15,7 +15,7 @@
 // $user->password = "Edwin1234";
 // $user->email = "Edwin@gmail.com";
 // $user->create();
-$user = Photo::find_byId(4);
+$user = Photo::find_byId(6);
 echo $user->filename;
 // $photos = Photo::find_all();
 // foreach ($photos as $photo) {
