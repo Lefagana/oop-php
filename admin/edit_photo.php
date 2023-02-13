@@ -1,7 +1,23 @@
 <?php include "includes/header.php";?>
 <?php if (!$session->isSignIn()) {redirect("login.php");}?>
 <?php
-$photos = Photo::find_all();
+
+if (empty($_GET['id'])) {
+    redirect("photos.php");
+} else {
+    $photo = Photo::find_byId($_GET['id']);
+    if (isset($_POST['update'])) {
+        if ($photo) {
+            $photo->title = $_POST['title'];
+            $photo->caption = $_POST['caption'];
+            $photo->alterntive_text = $_POST['altText'];
+            $photo->description = $_POST['desc'];
+            $photo->save();
+            // redirect("photos.php");
+        }
+    }
+}
+// $photos = Photo::find_byId($_GET['id']);
 
 ?>
 <!-- Navigation -->
@@ -26,19 +42,26 @@ $photos = Photo::find_all();
                 <form method="post">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <input type="text" name="title" id="" class="form-control">
+                            <input type="text" name="title" id="" class="form-control"
+                                value="<?php echo $photo->title; ?>">
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="thumbnail"><img src="<?php echo $photo->picturePath() ?>" alt=""></a>
                         </div>
                         <div class="form-group">
                             <label for="caption">Caption</label>
-                            <input type="text" name="caption" id="" class="form-control">
+                            <input type="text" name="caption" id="" class="form-control"
+                                value="<?php echo $photo->caption; ?>">
                         </div>
                         <div class="form-group">
                             <label for="altText">Alternative Text</label>
-                            <input type="text" name="altText" id="" class="form-control">
+                            <input type="text" name="altText" id="" class="form-control"
+                                value="<?php echo $photo->alternative_text; ?>">
                         </div>
                         <div class="form-group">
                             <label for="desc">Description</label>
-                            <textarea name="desc" class="form-control" id="" cols="30" rows="10"></textarea>
+                            <textarea name="desc" class="form-control" id="" cols="30"
+                                rows="10"><?php echo $photo->description ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -53,22 +76,19 @@ $photos = Photo::find_all();
                                         5:26
                                     </p>
                                     <p class="text ">
-                                        Photo Id: <span class="data photo_id_box">34</span>
+                                        Photo Id: <span class="data photo_id_box"><?php echo $photo->id ?></span>
                                     </p>
                                     <p class="text">
-                                        Filename: <span class="data">image.jpg</span>
+                                        Filename: <span class="data"><?php echo $photo->filename ?></span>
                                     </p>
                                     <p class="text">
-                                        File Type: <span class="data">JPG</span>
+                                        File Type: <span class="data"><?php echo $photo->type ?></span>
                                     </p>
                                     <p class="text">
-                                        File Size: <span class="data">3245345</span>
+                                        File Size: <span class="data"><?php echo $photo->size ?></span>
                                     </p>
                                 </div>
-                                <?php
-foreach ($photos as $photo):
-?>
-                                <?php endforeach;?>
+
                                 <div class="info-box-footer clearfix">
                                     <div class="info-box-delete pull-left">
                                         <a href="delete_photo.php?id=<?php echo $photo->id; ?>"

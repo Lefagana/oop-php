@@ -2,10 +2,12 @@
 class Photo extends Db_object
 {
     protected static $db_tbl = "photos";
-    protected static $db_tbl_fields = array('id', 'title', 'description', 'filename', 'type', 'size');
+    protected static $db_tbl_fields = array('id', 'title', 'caption', 'alternative_text', 'description', 'filename', 'type', 'size');
     public $id;
     public $title;
     public $description;
+    public $caption;
+    public $alternative_text;
     public $filename;
     public $type;
     public $size;
