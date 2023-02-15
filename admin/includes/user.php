@@ -9,8 +9,10 @@ class User extends Db_object
     public $firstname;
     public $lastname;
     public $email;
+    // public $userimage;
+    // public $upload_dir = "images";
+    // public $image_placeholder = "images/download.jpg";
 
-    //method that verify user sign-in
     public static function verify_user($username, $password)
     {
         global $database;
