@@ -42,8 +42,8 @@ foreach ($users as $user):
 ?>
                             <tr>
                                 <td><?php echo $user->id ?></td>
-                                <td><img src="<?php echo $user->imagePathAndPlaceholder(); ?>" width="100" height="100"
-                                        class="admin-user-thumbnail"></td>
+                                <td><img src="<?php echo $user->imagePathAndPlaceholder(); ?>"
+                                        class="admin-user-thumbnail user_image"></td>
                                 <td><?php echo $user->username ?>
                                     <div class="actions_links">
                                         <a href="delete_user.php/?id=<?php echo $user->id ?>">Delete</a>
