@@ -4,15 +4,15 @@
 <?php
 $user_id = $_GET['id'];
 if (empty($_GET['id'])) {
-    redirect("photos.php");
+    redirect("users.php");
 }
 
 $user = User::find_byId($user_id);
 
 if ($user) {
-    $user->delete_user();
-    redirect("../photos.php");
+    $user->delete();
+    redirect("users.php");
 
 } else {
-    redirect("photos.php");
+    redirect("users.php");
 }
