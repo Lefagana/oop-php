@@ -4,7 +4,7 @@
 <?php
 $user_id = $_GET['id'];
 if (empty($_GET['id'])) {
-    redirect("users.php");
+    redirect("../users.php");
 }
 
 $user = User::find_byId($user_id);
